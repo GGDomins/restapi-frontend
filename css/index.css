@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap');
+
+body {
+    font-family: 'Nanum Gothic';
+}
+
 .index-container {
     position: absolute;
     top: 50%;
@@ -18,4 +24,20 @@
     padding: 1rem;
     border: 1px solid #000;
     font-size: 2rem;
+}
+
+.mypage {
+    display: none;
+    margin: 0 1rem 0 0;
+    padding: 1rem;
+    border: 1px solid #000;
+    font-size: 2rem;
+}
+
+.logout {
+    display: none;
+    padding: 1rem;
+    border: 1px solid #000;
+    font-size: 2rem;
+    cursor: pointer;
 }

@@ -1,0 +1,19 @@
+.mypage-container {
+    margin: 2rem;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.token-check {
+    display: block;
+    width: fit-content;
+    margin: 2rem 0 0 0;
+    padding: 1.5rem;
+    font-size: 1rem;
+    border: 1px solid #000;
+    border-radius: 6px;
+    background-color: #fff;
+    cursor: pointer;
+}

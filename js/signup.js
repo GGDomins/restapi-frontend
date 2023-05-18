@@ -27,7 +27,7 @@ function submitData(event) {
             password: password
         };
     
-        fetch('https://00b3ec01-ae57-479b-ba3b-bf8fd00c14d1.mock.pstmn.io/test/default', {
+        fetch('https://d4210923-9869-47d5-b0aa-e1d9dfb983c9.mock.pstmn.io/mock/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -40,15 +40,17 @@ function submitData(event) {
                 }
                 return response.json();
             })
-            .then(data => {
-                //console.log(data);
-                const code = data.code;
+            .then(response => {
+                const code = response.code;
+                const message = response.message;
 
-                if (code == '200') {
-                    console.log('signup successful');
-                    
+                if (code == 200) {
+                    console.log('HTTP 200 OK ' + message);
+                    alert('회원가입에 성공하였습니다!');
+                    window.location.href = 'login.html';
                 } else {
-                    console.log('something went wrong');
+                    console.log('HTTP 400 Bad Request' + message);
+                    alert(message);
                 }
             })
             .catch(error => {
