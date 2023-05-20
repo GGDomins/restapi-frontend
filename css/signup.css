@@ -13,27 +13,36 @@ body {
 }
 
 h1 {
-    margin: 0 0 1rem 0;
+    margin: 0 0 0.8rem 0;
     font-size: 2rem;
     font-weight: 600;
 }
 
 .to-login {
-    color: #436B95;
-    transition: 0.3s;
+    color: #a44aff;
 }
 
-.to-login:hover {
-    color: #1D2951;
+label {
+    display: block;
+    margin: 1.5rem 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+#label-name {
+    margin: 3rem 0 0.5rem 0;
+}
+
+#label-pwd, #label-pwdcheck {
+    margin: 0 0 0.5rem 0;
 }
 
 input {
     display: block;
-    margin: 2.5rem 0 0 0;
+    border: 1px solid #c2c2c2;
+    border-radius: 0.5rem;
+    padding: 10px;
     width: 100%;
-    border: none;
-    border-bottom: 1.5px solid #aeaeae;
-    padding: 0.5rem;
     font-size: 1rem;
 }
 
@@ -41,39 +50,27 @@ input[type='password']:not(:placeholder-shown) {
     letter-spacing: 2px;
 }
 
-#password, #password-check {
-    margin: 1rem 0 0 0;
-}
-
 input:focus {
-    outline: block;
-    border-bottom: 1.5px solid #373737;
+    outline-color: #a44aff;
 }
 
-.email-message {
+.message {
     display: block;
     height: 1.5rem;
     line-height: 1.5rem;
     font-size: 0.8rem;
     text-align: right;
+}
+
+#email-message {
     color: #ff5c5c;
 }
 
-.pwd-message {
-    display: block;
-    height: 1.5rem;
-    line-height: 1.5rem;
-    font-size: 0.8rem;
-    text-align: right;
+#pwd-message {
     color: #000000;
 }
 
-.pwdcheck-message {
-    display: block;
-    height: 1.5rem;
-    line-height: 1.5rem;
-    font-size: 0.8rem;
-    text-align: right;
+#pwdcheck-message {
     color: #ff5c5c;
 }
 
@@ -85,26 +82,27 @@ input:focus {
     position: absolute;
     display: block;
     top: 50%;
-    right: 0;
+    right: 4px;
     transform: translateY(-50%);
     cursor: pointer;
     font-size: 1.3rem;
 }
 
-button {
-    margin: 2.5rem 0 0 0;
+#submit {
+    margin: 2rem 0 0 0;
     width: 100%;
-    border: none;
+    border: 1px solid #a44aff;
     border-radius: 6px;
-    padding: 1rem;
+    padding: 10px;
     cursor: pointer;
-    transition: 0.3s;
     font-size: 1rem;
     font-weight: bold;
-    background-color: #436B95;
+    background-color: #a44aff;
     color: #fff;
 }
 
-button:hover {
-    background-color: #1D2951;
+#submit:hover {
+    border: 1px solid #37016e;
+    background-color: #37016e;
+    transition: 0.3s ease;
 }

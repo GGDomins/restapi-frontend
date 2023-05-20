@@ -14,6 +14,7 @@ function loginRequest(event) {
 
     fetch('https://d4210923-9869-47d5-b0aa-e1d9dfb983c9.mock.pstmn.io/mock/login', {
         method: 'POST',
+        mode: 'cors',
         headers: {
             'Content-type': 'application/json'
         },

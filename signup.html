@@ -15,26 +15,31 @@
 </head>
 
 <body> 
-  <div class="signup-container">
+    <div class="signup-container">
     <form id="form">
-      <h1>회원가입</h1>
-      <p>이미 회원이신가요? <a href="login.html" class="to-login">로그인하기</a></p>
+        <h1>회원가입</h1>
+        <p>이미 회원이신가요? <a href="login.html" class="to-login">로그인하기</a></p>
 
-      <input type="text" id="name" placeholder="이름">
-      <input type="text" id="email" placeholder="이메일">
-      <p id="email-message" class="email-message"></p>
+        <label for="name" id="label-name">이름</label>
+        <input type="text" id="name" placeholder="이름을 입력하세요.">
 
-      <div class="password-box">
-        <input type="password" id="password" placeholder="비밀번호">
-        <span id="show-pass" class="material-symbols-outlined">visibility</span>
-      </div>
-      <p id="pwd-message" class="pwd-message"></p>
-      
-      <input type="password" id="password-check" placeholder="비밀번호 확인">
-      <p id="pwdcheck-message" class="pwdcheck-message"></p>
-      <button type="submit" id="submit">가입하기</button>
+        <label for="email">이메일</label>
+        <input type="text" id="email" placeholder="이메일을 입력하세요.">
+        <p id="email-message" class="message"></p>
+
+        <label for="password" id="label-pwd">비밀번호</label>
+        <div class="password-box">
+            <input type="password" id="password" placeholder="비밀번호를 입력해주세요.">
+            <span id="show-pass" class="material-symbols-outlined">visibility</span>
+        </div>
+        <p id="pwd-message" class="message"></p>
+        
+        <label for="password-check" id="label-pwdcheck">비밀번호 확인</label>
+        <input type="password" id="password-check" placeholder="비밀번호 확인">
+        <p id="pwdcheck-message" class="message"></p>
+        <button type="submit" id="submit">가입하기</button>
     </form>
-  </div>
+    </div>
 
 <script src="/js/signup.js"></script>
 

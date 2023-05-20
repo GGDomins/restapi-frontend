@@ -21,7 +21,7 @@ function submitData(event) {
 
 
     if (name && emailValid && passwordValid) {
-        const credentials = {
+        const data = {
             name: name,
             email: email,
             password: password
@@ -29,10 +29,11 @@ function submitData(event) {
     
         fetch('https://d4210923-9869-47d5-b0aa-e1d9dfb983c9.mock.pstmn.io/mock/signup', {
             method: 'POST',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(credentials)
+            body: JSON.stringify(data)
         })
             .then(response => {
                 if (!response.ok) {

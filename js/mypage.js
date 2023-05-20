@@ -14,6 +14,7 @@ function checkToken(event) {
         }
     } else {
         alert('잘못된 접근입니다.');
+        window.location.href = "index.html";
     }
 
     event.preventDefault();
@@ -51,3 +52,4 @@ function refreshToken() {
 
 const tokenCheck = document.getElementById('token-check');
 tokenCheck.addEventListener('click', checkToken);
+

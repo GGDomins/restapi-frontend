@@ -5,8 +5,8 @@ function refreshToken() {
     })
         .then(response => {
             if (!response.ok) {
-                login.style.display = 'inline-block';
-                signup.style.display = 'inline-block';
+                login.style.display = 'block';
+                signup.style.display = 'block';
                 mypage.style.display = 'none';
                 logout.style.display = 'none';
 
@@ -35,7 +35,7 @@ function refreshToken() {
 }
 
 function myPageAccess(event) {
-
+    
     const token = localStorage.getItem('accessToken');
 
     if(token) {
@@ -65,12 +65,13 @@ function myPageAccess(event) {
                     } else {
                         alert(message);
                         console.log(response);
-                        window.location.href = "index.html";
+                        window.location.href = "unauthorized.html";
                     }
                 })
         }
+    } else {
+        window.location.href = "unauthorized.html";
     }
-    event.preventDefault();
 }
 
 function removeToken() {
@@ -82,7 +83,7 @@ function removeToken() {
     location.reload();
 }
 
-window.onload = function() {
+function tokenCheck() {
     const token = localStorage.getItem('accessToken');
     const expTime = localStorage.getItem('accessTokenExpTime');
 
@@ -91,11 +92,6 @@ window.onload = function() {
     if(token) {
         const currentTime = new Date().getTime();
         console.log(currentTime);
-
-        const login = document.getElementById('login');
-        const mypage = document.getElementById('mypage');
-        const signup = document.getElementById('signup');
-        const logout = document.getElementById('logout');
 
         if(currentTime >= expTime) {
             localStorage.removeItem('accessToken');
@@ -108,10 +104,16 @@ window.onload = function() {
 
         login.style.display = 'none';
         signup.style.display = 'none';
-        mypage.style.display = 'inline-block';
-        logout.style.display = 'inline-block';
+        mypage.style.display = 'block';
+        logout.style.display = 'block';
     }
 }
+window.onload = function() {
+    tokenCheck();
+}
+
+const login = document.getElementById('login');
+const signup = document.getElementById('signup');
 
 const mypage = document.getElementById('mypage');
 mypage.addEventListener('click', myPageAccess);
