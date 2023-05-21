@@ -5,8 +5,6 @@ function submitData(event) {
     const password = passwordInput.value;
     const passwordCheck = passwordCheckInput.value;
 
-    let passwordValid = false;
-    let emailValid = false;
 
     if (name && emailValid && passwordValid) {
         const data = {
@@ -210,6 +208,9 @@ const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const passwordCheckInput = document.getElementById('password-check');
+
+let passwordValid = false;
+let emailValid = false;
 
 form.addEventListener('submit', submitData);
 emailInput.addEventListener('keyup', validateEmail);
