@@ -12,7 +12,7 @@ function loginRequest(event) {
         password: password
     };
 
-    fetch('https://d4210923-9869-47d5-b0aa-e1d9dfb983c9.mock.pstmn.io/mock/login', {
+    fetch('https://jwtspringsecurity.herokuapp.com/login', {
         method: 'POST',
         mode: 'cors',
         headers: {

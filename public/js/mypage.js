@@ -21,7 +21,7 @@ function checkToken(event) {
 }
 
 function refreshToken() {
-    fetch('api', {
+    fetch('https://jwtspringsecurity.herokuapp.com/refresh-token', {
         method: 'POST',
         credentials: 'include'
     })

@@ -27,7 +27,7 @@ function submitData(event) {
             password: password
         };
     
-        fetch('https://d4210923-9869-47d5-b0aa-e1d9dfb983c9.mock.pstmn.io/mock/signup', {
+        fetch('https://jwtspringsecurity.herokuapp.com/signup', {
             method: 'POST',
             mode: 'cors',
             headers: {

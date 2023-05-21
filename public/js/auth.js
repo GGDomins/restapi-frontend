@@ -25,12 +25,15 @@ function checkToken() {
 function validateToken() {
     const token = localStorage.getItem('accessToken');
 
-    fetch('api', {
+    fetch('https://jwtspringsecurity.herokuapp.com/', {
         method: 'POST',
         mode: 'cors',
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
+            'accessToken': token
+        },
+        body: {
             'accessToken': token
         }
     })
