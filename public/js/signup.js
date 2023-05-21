@@ -30,6 +30,7 @@ function submitData(event) {
         fetch('https://jwtspringsecurity.herokuapp.com/signup', {
             method: 'POST',
             mode: 'cors',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
