@@ -7,7 +7,7 @@ function loginRequest(event) {
     const email = emailInput.value;
     const password = passwordInput.value;
 
-    const credentials = {
+    const data = {
         email: email,
         password: password
     };
@@ -15,10 +15,11 @@ function loginRequest(event) {
     fetch('https://jwtspringsecurity.herokuapp.com/login', {
         method: 'POST',
         mode: 'cors',
+        credentials: 'include',
         headers: {
             'Content-type': 'application/json'
         },
-        body: JSON.stringify(credentials)
+        body: JSON.stringify(data)
     })
         .then(response => {
             if(!response.ok) {

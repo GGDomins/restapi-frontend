@@ -1,17 +1,3 @@
-const form = document.getElementById('form');
-
-const nameInput = document.getElementById('name');
-const emailInput = document.getElementById('email');
-const passwordInput = document.getElementById('password');
-const passwordCheckInput = document.getElementById('password-check');
-
-let emailMessage = document.getElementById('email-message');
-let pwdMessage = document.getElementById('pwd-message');
-let pwdCheckMessage = document.getElementById('pwdcheck-message');
-
-let passwordValid = false;
-let emailValid = false;
-
 function submitData(event) {
 
     const name = nameInput.value;
@@ -19,6 +5,8 @@ function submitData(event) {
     const password = passwordInput.value;
     const passwordCheck = passwordCheckInput.value;
 
+    let passwordValid = false;
+    let emailValid = false;
 
     if (name && emailValid && passwordValid) {
         const data = {
@@ -77,6 +65,8 @@ function submitData(event) {
 }
 
 function validateEmail(event) {
+    let emailMessage = document.getElementById('email-message');
+
     const email = emailInput.value;
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -102,6 +92,8 @@ function validateEmail(event) {
 }
 
 function checkPassword(event) {
+    let pwdCheckMessage = document.getElementById('pwdcheck-message');
+
     const password = passwordInput.value;
     const passwordCheck = passwordCheckInput.value;
 
@@ -151,6 +143,8 @@ function viewPassword() {
 }
 
 function measureStrength(event) {
+    let pwdMessage = document.getElementById('pwd-message');
+
     const password = passwordInput.value;
     const passwordLength = password.length;
     const span = document.createElement('span');
@@ -210,6 +204,12 @@ function measureStrength(event) {
     event.preventDefault();
 }
 
+const form = document.getElementById('form');
+
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const passwordCheckInput = document.getElementById('password-check');
 
 form.addEventListener('submit', submitData);
 emailInput.addEventListener('keyup', validateEmail);
