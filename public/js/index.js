@@ -1,7 +1,11 @@
 function refreshToken() {
     fetch('https://jwtspringsecurity.herokuapp.com/refresh-token', {
         method: 'POST',
-        credentials: 'include'
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+            'Content-type': 'application/json'
+        }
     })
         .then(response => {
             if (!response.ok) {
@@ -54,6 +58,7 @@ function myPageAccess(event) {
                     if(!response.ok) {
                         throw new Error("Something is wrong");
                     }
+
                     return response.json();
                 })
                 .then(response => {
