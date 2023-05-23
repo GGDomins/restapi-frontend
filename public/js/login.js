@@ -23,33 +23,22 @@ function loginRequest(event) {
     })
         .then(response => {
             const statusCode = response.status;
-            const message = response.json().message;
 
             if (statusCode === 200) {
-                const accessToken = response.headers.get('accessToken');
-                const expireTime = response.headers.get('expireTime');
-
-                console.log(accessToken);
-
-                localStorage.setItem('accessToken', accessToken);
-                localStorage.setItem('expireTime', expireTime);
-
-                console.log('200 OK / Login Successful');
-                alert('로그인 성공!');
-
-                window.location.href = "index.html";
-
-                //return response.json();
+                return response.json();
             } else if (statusCode === 401) {
-                alert(message);
-                console.log('401 Unauthorized');
+                return response.json().then(response => {
+                    const message = response.json().message;
+                    alert(message);
+                    console.log('401 Unauthorized');
 
-                if (message == "이메일을 잘못 입력하셨습니다.") {
-                    emailInput.focus();
-                } else {
-                    passwordInput.focus();
-                }
-                throw new Error('401 Unauthorized');
+                    if (message == "이메일을 잘못 입력하셨습니다.") {
+                        emailInput.focus();
+                    } else {
+                        passwordInput.focus();
+                    }
+                    throw new Error('401 Unauthorized');
+                })
             } else {
                 throw new Error('Unexpected error');
             }
@@ -57,6 +46,22 @@ function loginRequest(event) {
             // for (const [name, value] of response.headers.entries()) {
             //     console.log(`${name}: ${value}`);
             // }
+        })
+        .then(response => {
+            const accessToken = response.headers.get('accessToken');
+            const expireTime = response.headers.get('expireTime');
+
+            console.log(accessToken);
+
+            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('expireTime', expireTime);
+
+            console.log('200 OK / Login Successful');
+            alert('로그인 성공!');
+
+            window.location.href = "index.html";
+
+            //return response.json();
         })
         .catch(error => {
             console.error(error);
