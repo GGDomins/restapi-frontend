@@ -22,47 +22,42 @@ function loginRequest(event) {
         body: JSON.stringify(data)
     })
         .then(response => {
-            if(!response.ok) {
-                console.log(response.status);
-                throw new Error('Network response error');
-            }
+            const statusCode = response.status;
+            const message = response.json().message;
 
-            for (const [name, value] of response.headers.entries()) {
-                console.log(`${name}: ${value}`);
-            }
+            if (statusCode === 200) {
+                const accessToken = response.headers.get('accessToken');
+                const expireTime = response.headers.get('expireTime');
 
-            return response.json();
-        })
-        .then(response => {
-            //console.log(response);
-            const code = response.code;
-            const message = response.message;
-            const token = response.token;
-            
-            if (code == 200) {
-                //log message then place token into header
-                const expTime = response.expireTimeMs;
+                localStorage.setItem('accessToken', accessToken);
+                localStorage.setItem('expireTime', expireTime);
 
-                console.log(`HTTP ${code} OK`);
-                console.log(message);
-
-                localStorage.setItem('accessToken', token);
-                localStorage.setItem('accessTokenExpTime', expTime);
-
-                alert(`${email} 님, 환영합니다!`);
+                console.log('200 OK / Login Successful');
+                alert('로그인 성공!');
 
                 window.location.href = "index.html";
-            } else {
+
+                //return response.json();
+            } else if (statusCode === 401) {
                 alert(message);
+                console.log('401 Unauthorized');
+
                 if (message == "이메일을 잘못 입력하셨습니다.") {
                     emailInput.focus();
                 } else {
                     passwordInput.focus();
                 }
+                throw new Error('401 Unauthorized');
+            } else {
+                throw new Error('Unexpected error');
             }
+
+            // for (const [name, value] of response.headers.entries()) {
+            //     console.log(`${name}: ${value}`);
+            // }
         })
         .catch(error => {
-            console.error('fetch operation problem:', error);
+            console.error(error);
         });
     
     event.preventDefault();

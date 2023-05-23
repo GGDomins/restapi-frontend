@@ -1,12 +1,15 @@
-function checkToken(event) {
-    const token = localStorage.getItem('accessToken');
+function checkExpire(event) {
+    event.preventDefault();
 
-    if(token) {
-        const expTime = localStorage.getItem('accessTokenExpTime');
+    const accessToken = localStorage.getItem('accessToken');
+    const expTime = localStorage.getItem('expireTime');
+
+    if(accessToken) {
+        
         const currentTime = new Date().getTime();
 
         if(currentTime < expTime) {
-            console.log('토큰이 유효합니다.');
+            validateToken();
         } else {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('accessTokenExpTime');
@@ -16,40 +19,81 @@ function checkToken(event) {
         alert('잘못된 접근입니다.');
         window.location.href = "index.html";
     }
-
-    event.preventDefault();
 }
 
 function refreshToken() {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('expireTime');
+
     fetch('https://jwtspringsecurity.herokuapp.com/refresh-token', {
         method: 'POST',
+        mode: 'cors',
         credentials: 'include'
     })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Token refresh failed.');
             }
+
+            const statusCode = response.status;
+
+            if (statusCode === 200) {
+                const accessToken = response.headers.get('accessToken');
+                const expireTime = response.headers.get('expireTime');
+
+                localStorage.setItem('accessToken', accessToken);
+                localStorage.setItem('expireTime', expireTime);
+
+                console.log('200 OK / Token refreshed!');
+            } else if (statusCode === 401) {
+                alert('401 Unauthorized');
+
+                window.location.href = "index.html";
+
+                throw new Error('401 Unauthorized');
+            } else {
+                throw new Error('Unexpected error');
+            }
+
             return response.json();
         })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+function validateToken() {
+    const accessToken = localStorage.getItem('accessToken');
+
+    fetch('https://jwtspringsecurity.herokuapp.com/my-page', {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+            accessToken: accessToken
+        }
+    })
         .then(response => {
-            const code = response.code;
-            const message = response.message;
-
-            if (code == 200) {
-                const token = response.token;
-                const expTime = response.expireTimeMs;
-
-                localStorage.setItem('accessToken', token);
-                localStorage.setItem('accessTokenExpTime', expTime);
-
-                alert(message);
-            } else {
-                console.log(`HTTP ${code} Internal Server Error`);
-                alert(message);
+            const statusCode = response.status;
+            
+            if(statusCode === 200) {
+                return response.json();
+            } else if(statusCode === 401) {
+                console.log('401 unauthorised / invalid user');
+                
+                window.location.href = "index.html";
             }
+        })
+        .then(response => {
+            const name = response.name;
+            const email = response.email;
+
+            console.log(name, email);
+        })
+        .catch(error => {
+            console.log(error);
         })
 }
 
 const tokenCheck = document.getElementById('token-check');
-tokenCheck.addEventListener('click', checkToken);
-
+tokenCheck.addEventListener('click', checkExpire);

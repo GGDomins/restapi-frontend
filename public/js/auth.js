@@ -32,16 +32,16 @@ function validateToken() {
         headers: {
             'Content-Type': 'application/json',
             'accessToken': token
-        },
-        body: {
-            'accessToken': token
         }
     })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Token authentication failed.');
             }
-            return response.json();
+
+            if (response.status == 200) {
+                return response.json();
+            }
         })
         .then(response => {
             const code = response.code;
