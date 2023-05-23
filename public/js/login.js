@@ -30,6 +30,9 @@ function loginRequest(event) {
 
                 console.log(accessToken);
 
+                localStorage.setItem('accessToken', accessToken);
+                localStorage.setItem('expireTime', expireTime);
+
                 console.log('200 OK / Login Successful');
                 alert('로그인 성공!');
 
