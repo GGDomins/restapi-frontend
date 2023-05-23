@@ -29,6 +29,8 @@ function loginRequest(event) {
                 const accessToken = response.headers.get('accessToken');
                 const expireTime = response.headers.get('expireTime');
 
+                console.log(accessToken);
+
                 localStorage.setItem('accessToken', accessToken);
                 localStorage.setItem('expireTime', expireTime);
 
