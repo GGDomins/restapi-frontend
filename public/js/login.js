@@ -29,6 +29,7 @@ function loginRequest(event) {
                 const expireTime = response.headers.get('expireTime');
 
                 console.log(accessToken);
+                console.log(expireTime);
 
                 localStorage.setItem('accessToken', accessToken);
                 localStorage.setItem('expireTime', expireTime);
@@ -36,7 +37,7 @@ function loginRequest(event) {
                 console.log('200 OK / Login Successful');
                 alert('로그인 성공!');
 
-                //window.location.href = "index.html";
+                window.location.href = "index.html";
             } else if (statusCode === 401) {
                 return response.json().then(response => {
                     const message = response.json().message;
