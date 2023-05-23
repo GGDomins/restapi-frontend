@@ -19,6 +19,9 @@ function refreshToken() {
                 console.log(accessToken);
                 console.log(expireTime);
             } else {
+                const accessToken = response.headers.get('accessToken');
+                const expireTime = response.headers.get('expireTime');
+                
                 login.style.display = 'block';
                 signup.style.display = 'block';
                 mypage.style.display = 'none';
