@@ -47,9 +47,9 @@ function loginRequest(event) {
             //     console.log(`${name}: ${value}`);
             // }
         })
-        .then(response => {
-            const accessToken = response.headers.get('accessToken');
-            const expireTime = response.headers.get('expireTime');
+        .then(data => {
+            const accessToken = data.headers.get('accessToken');
+            const expireTime = data.headers.get('expireTime');
 
             console.log(accessToken);
 
