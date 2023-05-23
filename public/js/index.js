@@ -1,3 +1,35 @@
+function refreshToken() {
+    fetch('https://jwtspringsecurity.herokuapp.com/refresh-token', {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include'
+    })
+        .then(response => {
+            const statusCode = response.status;
+
+            if (statusCode === 200) {
+                const accessToken = response.headers.get('accessToken');
+                const expireTime = response.headers.get('expireTime');
+
+                login.style.display = 'none';
+                signup.style.display = 'none';
+                mypage.style.display = 'block';
+                logout.style.display = 'block';
+
+                console.log(accessToken);
+                console.log(expireTime);
+            } else {
+                login.style.display = 'block';
+                signup.style.display = 'block';
+                mypage.style.display = 'none';
+                logout.style.display = 'none';
+
+                console.log('invalid token');
+            }
+        })
+}
+
+
 // // function refreshToken() {
 // //     fetch('https://jwtspringsecurity.herokuapp.com/refresh-token', {
 // //         method: 'POST',
@@ -117,11 +149,13 @@
 // //     tokenCheck();
 // // }
 
-// const login = document.getElementById('login');
-// const signup = document.getElementById('signup');
+const login = document.getElementById('login');
+const signup = document.getElementById('signup');
 
-// const mypage = document.getElementById('mypage');
+const mypage = document.getElementById('mypage');
 // mypage.addEventListener('click', myPageAccess);
 
-// const logout = document.getElementById('logout');
+const logout = document.getElementById('logout');
 // logout.addEventListener('click', removeToken);
+
+document.addEventListener('DOMContentLoaded', refreshToken);
