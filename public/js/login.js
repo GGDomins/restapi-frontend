@@ -23,6 +23,7 @@ function loginRequest(event) {
     })
         .then(response => {
             if(!response.ok) {
+                console.log(response.status);
                 throw new Error('Network response error');
             }
 
