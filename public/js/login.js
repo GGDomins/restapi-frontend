@@ -15,7 +15,6 @@ function loginRequest(event) {
     fetch('https://jwtspringsecurity.herokuapp.com/login', {
         method: 'POST',
         mode: 'cors',
-        credentials: 'include',
         headers: {
             'Content-type': 'application/json'
         },
