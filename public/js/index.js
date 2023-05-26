@@ -2,7 +2,10 @@ const refreshToken = () => {
     fetch('https://jwtspringsecurity.herokuapp.com/refresh-token', {
         method: 'POST',
         mode: 'cors',
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        }
     })
         .then(response => {
             const statusCode = response.status;
