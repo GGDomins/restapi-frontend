@@ -30,6 +30,7 @@ const refreshToken = () => {
 };
 
 
+
 //function refreshToken() {
 //     fetch('https://jwtspringsecurity.herokuapp.com/refresh-token', {
 //         method: 'POST',
@@ -192,6 +193,21 @@ const signup = document.getElementById('signup');
 
 const mypage = document.getElementById('mypage');
 // mypage.addEventListener('click', myPageAccess);
+
+mypage.addEventListener('click', function() {
+    const openModalButton = document.getElementById('openModalButton');
+    const closeModalButton = document.getElementById('closeModalButton');
+    const modal = document.getElementById('modal');
+  
+    openModalButton.addEventListener('click', function() {
+      modal.style.display = 'block';
+    });
+  
+    closeModalButton.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+});
+  
 
 const logout = document.getElementById('logout');
 // logout.addEventListener('click', removeToken);
