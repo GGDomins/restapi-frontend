@@ -194,12 +194,11 @@ const signup = document.getElementById('signup');
 const mypage = document.getElementById('mypage');
 // mypage.addEventListener('click', myPageAccess);
 
-mypage.addEventListener('click', function() {
-    const openModalButton = document.getElementById('openModalButton');
+document.addEventListener('DOMContentLoaded', function() {
     const closeModalButton = document.getElementById('closeModalButton');
     const modal = document.getElementById('modal');
-  
-    openModalButton.addEventListener('click', function() {
+    
+    mypage.addEventListener('click', function() {
       modal.style.display = 'block';
     });
   
