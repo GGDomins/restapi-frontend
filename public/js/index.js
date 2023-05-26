@@ -1,4 +1,4 @@
-function refreshToken() {
+const refreshToken = () => {
     fetch('https://jwtspringsecurity.herokuapp.com/refresh-token', {
         method: 'POST',
         mode: 'cors',
@@ -8,32 +8,61 @@ function refreshToken() {
             const statusCode = response.status;
 
             if (statusCode === 200) {
-                const accessToken = response.headers.get('accessToken');
-                const expireTime = response.headers.get('expireTime');
-
                 login.style.display = 'none';
                 signup.style.display = 'none';
                 mypage.style.display = 'block';
                 logout.style.display = 'block';
-
-                console.log(accessToken);
-                console.log(expireTime);
             } else {
-                const accessToken = response.headers.get('accessToken');
-                const expireTime = response.headers.get('expireTime');
-
-                console.log(accessToken);
-                console.log(expireTime);
-
                 login.style.display = 'block';
                 signup.style.display = 'block';
                 mypage.style.display = 'none';
                 logout.style.display = 'none';
 
-                console.log('invalid token');
+                throw new Error('Invalid refresh token');
             }
         })
-}
+        .catch(err => {
+            console.log(err);
+        })
+};
+
+
+//function refreshToken() {
+//     fetch('https://jwtspringsecurity.herokuapp.com/refresh-token', {
+//         method: 'POST',
+//         mode: 'cors',
+//         credentials: 'include'
+//     })
+//         .then(response => {
+//             const statusCode = response.status;
+
+//             if (statusCode === 200) {
+//                 const accessToken = response.headers.get('accessToken');
+//                 const expireTime = response.headers.get('expireTime');
+
+//                 login.style.display = 'none';
+//                 signup.style.display = 'none';
+//                 mypage.style.display = 'block';
+//                 logout.style.display = 'block';
+
+//                 console.log(accessToken);
+//                 console.log(expireTime);
+//             } else {
+//                 const accessToken = response.headers.get('accessToken');
+//                 const expireTime = response.headers.get('expireTime');
+
+//                 console.log(accessToken);
+//                 console.log(expireTime);
+
+//                 login.style.display = 'block';
+//                 signup.style.display = 'block';
+//                 mypage.style.display = 'none';
+//                 logout.style.display = 'none';
+
+//                 console.log('invalid token');
+//             }
+//         })
+// }
 
 
 // // function refreshToken() {

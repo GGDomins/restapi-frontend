@@ -1,16 +1,15 @@
-const form = document.getElementById('form');
-const emailInput = document.getElementById('email');
-const passwordInput = document.getElementById('password');
+const getData = () => {
+    const form = document.getElementById('form');
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    return { email: email, password: password };
+}
+
 
 function loginRequest(event) {
 
-    const email = emailInput.value;
-    const password = passwordInput.value;
-
-    const data = {
-        email: email,
-        password: password
-    };
+    const data = getData();
 
     fetch('https://jwtspringsecurity.herokuapp.com/login', {
         method: 'POST',
@@ -29,9 +28,6 @@ function loginRequest(event) {
                 const expireTime = response.headers.get('expireTime');
 
                 console.log(accessToken);
-
-                localStorage.setItem('accessToken', accessToken);
-                localStorage.setItem('expireTime', expireTime);
 
                 console.log('200 OK / Login Successful');
                 alert('로그인 성공!');
