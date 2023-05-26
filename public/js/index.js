@@ -198,8 +198,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeModalButton = document.getElementById('closeModalButton');
     const modal = document.getElementById('modal');
     
+    const accessToken = localStorage.getItem('accessToken');
+    
     mypage.addEventListener('click', function() {
-      modal.style.display = 'block';
+        fetch('https://jwtspringsecurity.herokuapp.com/my-page', {
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+                'Content-type': 'application/json',
+                'accessToken': accessToken
+            }
+                .then(response => {
+                    const statusCode = response.status;
+                    
+                    if(statusCode === 200) {
+                        return response.json();
+                    } else {
+                        throw new Error ('Something went wrong');
+                    }
+                })
+                .then(response => {
+                    const name = response.name;
+                    const email = response.email;
+
+                    const nameTag = document.getElementById('name');
+                    const emailTag = document.getElementById('email');
+
+                    nameTag.textContent += name;
+                    emailTag.textContent += email;
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        })
+
+        modal.style.display = 'block';
     });
   
     closeModalButton.addEventListener('click', function() {
