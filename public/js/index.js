@@ -223,6 +223,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const name = response.name;
                 const email = response.email;
 
+                console.log(name);
+
                 const nameTag = document.getElementById('name');
                 const emailTag = document.getElementById('email');
 
@@ -238,7 +240,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   
     closeModalButton.addEventListener('click', function() {
-      modal.style.display = 'none';
+        document.getElementById('name').textContent = "name: ";
+        document.getElementById('email').textContent = "email: ";
+        modal.style.display = 'none';
     });
 });
   
