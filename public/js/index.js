@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeModalButton = document.getElementById('closeModalButton');
     const modal = document.getElementById('modal');
     
-    const accessToken = localStorage.getItem('accessToken');
+    const accessToken = 'Bearer ' + localStorage.getItem('accessToken');
     
     mypage.addEventListener('click', function() {
         fetch('https://jwtspringsecurity.herokuapp.com/my-page', {
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
             credentials: 'include',
             headers: {
                 'Content-type': 'application/json',
-                'accessToken': accessToken
+                'Authorization': accessToken
             }
         })
             .then(response => {
