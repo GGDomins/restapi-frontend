@@ -209,6 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Content-type': 'application/json',
                 'accessToken': accessToken
             }
+        })
                 .then(response => {
                     const statusCode = response.status;
                     
@@ -238,7 +239,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
     closeModalButton.addEventListener('click', function() {
       modal.style.display = 'none';
-    });
 });
   
 
