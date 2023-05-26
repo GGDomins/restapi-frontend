@@ -210,35 +210,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 'accessToken': accessToken
             }
         })
-                .then(response => {
-                    const statusCode = response.status;
-                    
-                    if(statusCode === 200) {
-                        return response.json();
-                    } else {
-                        throw new Error ('Something went wrong');
-                    }
-                })
-                .then(response => {
-                    const name = response.name;
-                    const email = response.email;
+            .then(response => {
+                const statusCode = response.status;
+                
+                if(statusCode === 200) {
+                    return response.json();
+                } else {
+                    throw new Error ('Something went wrong');
+                }
+            })
+            .then(response => {
+                const name = response.name;
+                const email = response.email;
 
-                    const nameTag = document.getElementById('name');
-                    const emailTag = document.getElementById('email');
+                const nameTag = document.getElementById('name');
+                const emailTag = document.getElementById('email');
 
-                    nameTag.textContent += name;
-                    emailTag.textContent += email;
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-        })
+                nameTag.textContent += name;
+                emailTag.textContent += email;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
 
         modal.style.display = 'block';
     });
   
     closeModalButton.addEventListener('click', function() {
       modal.style.display = 'none';
+    });
 });
   
 
