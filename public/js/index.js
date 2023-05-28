@@ -133,9 +133,37 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.style.display = 'none';
     });
 });
-  
 
 const logout = document.getElementById('logout');
+  
+logout.addEventListener('click', () => {
+    fetch('https://jwtspringsecurity.herokuapp.com/refresh-token', {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            const statusCode = response.status;
+
+            if(statusCode === 200) {
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('expTime');
+                
+                console.log('successfully logged out.');
+            } else {
+                throw new Error('error');
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+})
+
+
+
 // logout.addEventListener('click', removeToken);
 
 document.addEventListener('DOMContentLoaded', refreshToken);
