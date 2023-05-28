@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const logout = document.getElementById('logout');
   
 logout.addEventListener('click', () => {
-    fetch('https://jwtspringsecurity.herokuapp.com/refresh-token', {
+    fetch('https://jwtspringsecurity.herokuapp.com/logout', {
         method: 'GET',
         mode: 'cors',
         credentials: 'include',
