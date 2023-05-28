@@ -151,8 +151,13 @@ logout.addEventListener('click', () => {
             if(statusCode === 200) {
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('expTime');
-                
+
                 console.log('successfully logged out.');
+
+                login.style.display = 'block';
+                signup.style.display = 'block';
+                mypage.style.display = 'none';
+                logout.style.display = 'none';
             } else {
                 throw new Error('error');
             }
