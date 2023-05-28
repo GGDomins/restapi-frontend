@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const logout = document.getElementById('logout');
   
-logout.addEventListener('click', () => {
+logout.addEventListener('click', function() {
     fetch('https://jwtspringsecurity.herokuapp.com/logout', {
         method: 'POST',
         mode: 'cors',
