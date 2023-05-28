@@ -18,15 +18,15 @@ const refreshToken = () => {
                 const accessToken = response.headers.get('accessToken');
                 const expTime = response.headers.get('expireTime');
 
-                localStorage.setItem(accessToken);
-                localStorage.setItem(expTime);
+                localStorage.setItem('accessToken', accessToken);
+                localStorage.setItem('expTime', expTime);
 
                 login.style.display = 'none';
                 signup.style.display = 'none';
                 mypage.style.display = 'block';
                 logout.style.display = 'block';
 
-                //setTimeout(silentRefresh, JWT_EXPIRY_TIME - 20000);
+                setTimeout(silentRefresh, JWT_EXPIRY_TIME - 20000);
             } else {
                 login.style.display = 'block';
                 signup.style.display = 'block';
