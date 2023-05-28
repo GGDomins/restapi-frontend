@@ -1,5 +1,5 @@
 const refreshToken = () => {
-    const JWT_EXPIRY_TIME = 30000;
+    const JWT_EXPIRY_TIME = 5 * 60 * 1000;
     fetch('https://jwtspringsecurity.herokuapp.com/refresh-token', {
         method: 'POST',
         mode: 'cors',
@@ -26,7 +26,7 @@ const refreshToken = () => {
                 mypage.style.display = 'block';
                 logout.style.display = 'block';
 
-                setTimeout(silentRefresh, JWT_EXPIRY_TIME - 20000);
+                setTimeout(silentRefresh, JWT_EXPIRY_TIME - 30000);
             } else {
                 login.style.display = 'block';
                 signup.style.display = 'block';
@@ -60,8 +60,8 @@ const silentRefresh = () => {
                 const accessToken = response.headers.get('accessToken');
                 const expTime = response.headers.get('expireTime');
 
-                localStorage.setItem(accessToken);
-                localStorage.setItem(expTime);
+                localStorage.setItem('accessToken', accessToken);
+                localStorage.setItem('expTime', expTime);
             } else {
                 login.style.display = 'block';
                 signup.style.display = 'block';
