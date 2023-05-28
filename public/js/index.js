@@ -26,7 +26,7 @@ const refreshToken = () => {
                 mypage.style.display = 'block';
                 logout.style.display = 'block';
 
-                setTimeout(silentRefresh, JWT_EXPIRY_TIME - 20000);
+                //setTimeout(silentRefresh, JWT_EXPIRY_TIME - 20000);
             } else {
                 login.style.display = 'block';
                 signup.style.display = 'block';
