@@ -92,11 +92,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeModalButton = document.getElementById('closeModalButton');
     const modal = document.getElementById('modal');
     
-    const accessToken = 'Bearer ' + localStorage.getItem('accessToken');
-
-    console.log(accessToken);
-    
     mypage.addEventListener('click', function() {
+        const accessToken = 'Bearer ' + localStorage.getItem('accessToken');
+
+        console.log(accessToken);
         fetch('https://jwtspringsecurity.herokuapp.com/my-page', {
             method: 'GET',
             mode: 'cors',
