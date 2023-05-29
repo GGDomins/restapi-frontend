@@ -179,8 +179,8 @@ const about = document.getElementById('aboutus');
 about.addEventListener('click', function() {
     const accessToken = 'Bearer ' + localStorage.getItem('accessToken');
 
-    fetch('https://jwtspringsecurity.herokuapp.com/logout', {
-        method: 'POST',
+    fetch('https://jwtspringsecurity.herokuapp.com/about-us', {
+        method: 'GET',
         mode: 'cors',
         credentials: 'include',
         headers: {
