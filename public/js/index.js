@@ -93,6 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('modal');
     
     const accessToken = 'Bearer ' + localStorage.getItem('accessToken');
+
+    console.log(accessToken);
     
     mypage.addEventListener('click', function() {
         fetch('https://jwtspringsecurity.herokuapp.com/my-page', {
