@@ -174,7 +174,7 @@ logout.addEventListener('click', function() {
         })
 })
 
-const about = document.getElementById('about');
+const about = document.getElementById('aboutus');
 
 about.addEventListener('click', function() {
     const accessToken = 'Bearer ' + localStorage.getItem('accessToken');
