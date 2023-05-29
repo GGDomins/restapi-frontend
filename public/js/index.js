@@ -1,4 +1,10 @@
 const refreshToken = () => {
+
+    const accessToken = localStorage.getItem('accessToken');
+    if(!accessToken) {
+        return;
+    }
+
     const JWT_EXPIRY_TIME = 5 * 60 * 1000;
     fetch('https://jwtspringsecurity.herokuapp.com/refresh-token', {
         method: 'POST',
