@@ -162,7 +162,7 @@ logout.addEventListener('click', function() {
 
                 login.style.display = 'block';
                 signup.style.display = 'block';
-                mypage.style.display = 'none';
+                mypage.style.display = 'block';
                 logout.style.display = 'none';
             } else {
                 throw new Error('error');
