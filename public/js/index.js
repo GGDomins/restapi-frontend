@@ -89,6 +89,9 @@ const mypage = document.getElementById('mypage');
 // mypage.addEventListener('click', myPageAccess);
 
 document.addEventListener('DOMContentLoaded', function() {
+    const nameTag = document.getElementById('name');
+    const emailTag = document.getElementById('email');
+
     const closeModalButton = document.getElementById('closeModalButton');
     const modal = document.getElementById('modal');
     
@@ -120,9 +123,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 console.log(name);
 
-                const nameTag = document.getElementById('name');
-                const emailTag = document.getElementById('email');
-
                 nameTag.textContent = name;
                 emailTag.textContent = email;
             })
@@ -130,8 +130,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log(err);
             })
 
-
         modal.style.display = 'block';
+
+        const passChange = document.getElementById('pass-change');
+        passChange.addEventListener('click', () => {
+            const email = emailTag.textContent;
+
+            const pwd = document.getElementById('original-pwd').value;
+            const newpwd = document.getElementById('new-pwd').value;
+            
+            const data = {
+                currentPassword: pwd,
+                newPassword: newpwd
+            }
+
+            fetch(`https://jwtspringsecurity.herokuapp.com/passwordChange/${email}`, {
+                method: 'POST',
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                const statusCode = response.status;
+
+                if(statusCode === 200) {
+                    console.log('password change successful');
+                } else {
+                    throw new Error('error');
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        });
+
     });
   
     closeModalButton.addEventListener('click', function() {
@@ -144,6 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const logout = document.getElementById('logout');
   
 logout.addEventListener('click', function() {
+
     fetch('https://jwtspringsecurity.herokuapp.com/logout', {
         method: 'POST',
         mode: 'cors',
