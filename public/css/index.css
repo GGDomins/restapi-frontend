@@ -143,14 +143,24 @@ p {
 
 .modal-content > h2 {
     font-size: 2rem;
+    margin: 0 0 20px 0;
+}
+
+.modal-content > h3 {
+    font-size: 1.5rem;
+    margin: 0 0 10px 0;
 }
 
 .modal-content > #name {
     font-size: 1rem;
+    color: black;
+    margin: 0 0 10px 0;
 }
 
 .modal-content > #email {
     font-size: 1rem;
+    color: black;
+    margin: 0 0 10px 0;
 }
 
 .close {
