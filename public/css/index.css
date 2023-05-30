@@ -151,15 +151,10 @@ p {
     margin: 0 0 10px 0;
 }
 
-.modal-content > #name {
+.modal-content > #name, #email {
     font-size: 1rem;
     color: black;
-    margin: 0 0 10px 0;
-}
-
-.modal-content > #email {
-    font-size: 1rem;
-    color: black;
+    font-weight: 100;
     margin: 0 0 10px 0;
 }
 
