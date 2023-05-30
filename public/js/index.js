@@ -123,8 +123,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const nameTag = document.getElementById('name');
                 const emailTag = document.getElementById('email');
 
-                nameTag.textContent += name;
-                emailTag.textContent += email;
+                nameTag.textContent = name;
+                emailTag.textContent = email;
             })
             .catch(err => {
                 console.log(err);
